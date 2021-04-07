@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
+
+class PostVidio extends Model
+{
+    protected $table = 'postvidio';
+    protected $dates = ['created_at'];
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+
+    public function getCreatedAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->translatedFormat('d M Y , H:i:s');
+    }
+
+    public function getCreatedAttribute2()
+    {
+        return Carbon::parse($this->attributes['created_at'])->translatedFormat('l , d M Y , H:i:s');
+    }
+
+    public function getUpdatedAttribute2()
+    {
+        return Carbon::parse($this->attributes['updated_at'])->translatedFormat('l , d M Y , H:i:s');
+    }
+}
